@@ -1,0 +1,28 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "Image": {
+    "Name": "jrstark01/practice:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 8080,
+      "HostPort": 8000
+    }
+  ],
+  "EnvironmentProperties": {
+    "DATASOURCE_URL": "jdbc:mysql://dev-devops.cncurixahrmu.us-east-1.rds.amazonaws.com:3306/users",
+    "DATASOURCE_USERNAME": "admin",
+    "DATASOURCE_PASSWORD": "admin123456789",
+    "DATASOURCE_DRIVER": "com.mysql.cj.jdbc.Driver",
+    "DATASOURCE_TYPE": "com.zaxxer.hikari.HikariDataSource",
+    "TOMCAT_MAX_ACTIVE": "1",
+    "TOMCAT_MIN_IDLE": "1",
+    "JPA_HIBERNATE_DDL_AUTO": "update",
+    "JPA_PROPERTIES_HIBERNATE_DIALECT": "org.hibernate.dialect.MySQL8Dialect",
+    "JPA_PROPERTIES_HIBERNATE_FORMAT_SQL": "true",
+    "JPA_SHOW_SQL": "true",
+    "PROFILE": "dev",
+    "PORT": "8080"
+  }
+}
