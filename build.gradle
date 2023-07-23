@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.13'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'jacoco'
 }
 
 group = 'com.prama.devops'
@@ -24,6 +25,30 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 	testImplementation "org.mockito:mockito-core:3.+"
+}
+
+test {
+	finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
+
+	reports {
+		xml.required = false
+		csv.required = false
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+	}
+
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, includes: ['**/domain/**'])
+		}))
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.9"
+	reportsDirectory = layout.buildDirectory.dir('jacocoReport')
 }
 
 tasks.named('test') {
