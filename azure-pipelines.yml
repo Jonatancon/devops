@@ -24,12 +24,12 @@ stages:
     - task: Gradle@3
       inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: 'build applicationCodeCoverageReport sonarqube'
+        tasks: 'build' 
         publishJUnitResults: true
         codeCoverageToolOption: 'None'
         codeCoverageClassFilesDirectories: 'build/classes/main/'
         javaHomeOption: 'JDKVersion'
-        testResultsFiles: '**/TEST-*.xml'
+        testResultsFiles: '**/TEST*.xml'
         sonarQubeRunAnalysis: true
         sqGradlePluginVersionChoice: 'build'
         spotBugsAnalysis: false
@@ -37,7 +37,7 @@ stages:
       inputs:
         repository: 'java-app'
         command: 'build'
-        Dockerfile: '**/Dockerfile'
+        Dockerfile: '**/dockerfile'
     - task: ECRPushImage@1
       inputs:
         awsCredentials: 'container-resgister'
