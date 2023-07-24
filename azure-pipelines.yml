@@ -61,4 +61,17 @@ stages:
         forceDockerNamingConventions: true
         logRequest: true
         logResponse: true
+    - task: BeanstalkDeployApplication@1
+      inputs:
+        awsCredentials: 'container-resgister'
+        regionName: 'us-east-1'
+        applicationName: 'devops'
+        environmentName: 'Devops-env'
+        applicationType: 's3'
+        deploymentBundleBucket: 'docker-compose-dev'
+        deploymentBundleKey: 'docker-compose.yml'
+        versionLabel: 'V $(Build.BuildId)'
+        logRequest: true
+        logResponse: true
+    
     - template: azure-pipelines/notify.yml
