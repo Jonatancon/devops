@@ -40,13 +40,17 @@ stages:
         tasks: 'build'
         publishJUnitResults: true
         testResultsFiles: '**/TEST-*.xml'
-        codeCoverageToolOption: 'JaCoCo'
         codeCoverageClassFilesDirectories: 'build/classes/main/'
         codeCoverageFailIfEmpty: true
         javaHomeOption: 'JDKVersion'
         sonarQubeRunAnalysis: true
         sqGradlePluginVersionChoice: 'build'
         spotBugsAnalysis: false
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'JaCoCo'
+        summaryFileLocation: '$(Build.SourcesDirectory)/build/reports/jacoco/test/jacocoTestReport.xml'
+        reportDirectory: '$(Build.SourcesDirectory)/build/reports/jacoco/test/html'
     
     - task: SonarQubePublish@5
       inputs:
