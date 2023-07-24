@@ -24,7 +24,7 @@ stages:
     - task: Gradle@3
       inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: 'build codeCoverageReport sonarqube'
+        tasks: 'build applicationCodeCoverageReport sonarqube'
         publishJUnitResults: true
         codeCoverageToolOption: 'None'
         codeCoverageClassFilesDirectories: 'build/classes/main/'
