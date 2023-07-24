@@ -70,8 +70,8 @@ stages:
         applicationType: 's3'
         deploymentBundleBucket: 'docker-compose-dev'
         deploymentBundleKey: 'docker-compose.yml'
-        versionLabel: '$(Build.BuildId)'
         logRequest: true
         logResponse: true
+    
     
     - template: azure-pipelines/notify.yml
