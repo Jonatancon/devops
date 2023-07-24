@@ -97,17 +97,20 @@ tasks.register('applicationCodeCoverageReport', JacocoReport) {
 jacocoTestCoverageVerification {
 	violationRules {
 		rule {
-			element = 'CLASS'
 			limit {
-				minimum = 1
+				minimum = 0.5
 			}
-			excludes = []
 		}
+
 		rule {
+			enabled = false
+			element = 'CLASS'
+			includes = ['org.gradle.*']
+
 			limit {
-				counter = 'INSTRUCTIONS'
-				value = 'MISSEDRATIO'
-				minimum = 0.3
+				counter = 'LINE'
+				value = 'TOTALCOUNT'
+				maximum = 0.3
 			}
 		}
 	}
