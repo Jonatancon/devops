@@ -70,7 +70,7 @@ stages:
         applicationType: 's3'
         deploymentBundleBucket: 'docker-compose-dev'
         deploymentBundleKey: 'docker-compose.yml'
-        versionLabel: 'V $(Build.BuildId)'
+        versionLabel: '$(Build.BuildId)'
         logRequest: true
         logResponse: true
     
