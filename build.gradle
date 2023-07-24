@@ -57,7 +57,7 @@ test {
 
 }
 
-sonarqube {
+sonar {
 	properties {
 		property "sonar.sources", "src/main"
 		property "sonar.tests", "src/test"
