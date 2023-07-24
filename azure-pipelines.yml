@@ -22,15 +22,28 @@ stages:
         organization: 'jonatancon1'
         scannerMode: 'Other'
     
+    #- task: Gradle@3
+      #inputs:
+        #gradleWrapperFile: 'gradlew'
+        #tasks: 'build' 
+        #publishJUnitResults: true
+        #codeCoverageToolOption: 'None'
+        #codeCoverageClassFilesDirectories: 'build/classes/main/'
+        #javaHomeOption: 'JDKVersion'
+        #testResultsFiles: '**/TEST*.xml'
+        #sonarQubeRunAnalysis: true
+        #sqGradlePluginVersionChoice: 'build'
+        #spotBugsAnalysis: false
     - task: Gradle@3
       inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: 'build' 
+        tasks: 'build'
         publishJUnitResults: true
-        codeCoverageToolOption: 'None'
+        testResultsFiles: '**/TEST-*.xml'
+        codeCoverageToolOption: 'JaCoCo'
         codeCoverageClassFilesDirectories: 'build/classes/main/'
+        codeCoverageFailIfEmpty: true
         javaHomeOption: 'JDKVersion'
-        testResultsFiles: '**/TEST*.xml'
         sonarQubeRunAnalysis: true
         sqGradlePluginVersionChoice: 'build'
         spotBugsAnalysis: false
