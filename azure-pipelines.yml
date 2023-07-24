@@ -24,11 +24,12 @@ stages:
     - task: Gradle@3
       inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: 'build'
-        publishJUnitResults: false
+        tasks: 'build codeCoverageReport sonarqube'
+        publishJUnitResults: true
         codeCoverageToolOption: 'None'
         codeCoverageClassFilesDirectories: 'build/classes/main/'
         javaHomeOption: 'JDKVersion'
+        testResultsFiles: '**/TEST-*.xml'
         sonarQubeRunAnalysis: true
         sqGradlePluginVersionChoice: 'build'
         spotBugsAnalysis: false
