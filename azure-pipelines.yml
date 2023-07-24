@@ -22,18 +22,35 @@ stages:
         organization: 'jonatancon1'
         scannerMode: 'Other'
     
+    #- task: Gradle@3
+      #inputs:
+        #gradleWrapperFile: 'gradlew'
+        #tasks: 'build' 
+        #publishJUnitResults: true
+        #codeCoverageToolOption: 'None'
+        #codeCoverageClassFilesDirectories: 'build/classes/main/'
+        #javaHomeOption: 'JDKVersion'
+        #testResultsFiles: '**/TEST*.xml'
+        #sonarQubeRunAnalysis: true
+        #sqGradlePluginVersionChoice: 'build'
+        #spotBugsAnalysis: false
     - task: Gradle@3
       inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: 'build' 
+        tasks: 'build'
         publishJUnitResults: true
-        codeCoverageToolOption: 'None'
+        testResultsFiles: '**/TEST-*.xml'
         codeCoverageClassFilesDirectories: 'build/classes/main/'
+        codeCoverageFailIfEmpty: true
         javaHomeOption: 'JDKVersion'
-        testResultsFiles: '**/TEST*.xml'
         sonarQubeRunAnalysis: true
         sqGradlePluginVersionChoice: 'build'
         spotBugsAnalysis: false
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'JaCoCo'
+        summaryFileLocation: '$(Build.SourcesDirectory)/build/reports/jacoco/test/jacocoTestReport.xml'
+        reportDirectory: '$(Build.SourcesDirectory)/build/reports/jacoco/test/html'
     
     - task: SonarQubePublish@5
       inputs:
