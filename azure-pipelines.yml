@@ -26,7 +26,7 @@ stages:
         gradleWrapperFile: 'gradlew'
         tasks: 'build'
         publishJUnitResults: false
-        codeCoverageToolOption: 'JaCoCo'
+        codeCoverageToolOption: 'None'
         codeCoverageClassFilesDirectories: 'build/classes/main/'
         javaHomeOption: 'JDKVersion'
         sonarQubeRunAnalysis: true
