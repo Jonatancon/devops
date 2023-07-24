@@ -3,7 +3,6 @@ trigger:
 
 resources:
 - repo: self
-  fetchDepth: 0
 
 variables:
   tag: '$(Build.BuildId)'
@@ -17,24 +16,12 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    - script: git fetch --unshallow
     - task: SonarCloudPrepare@1
       inputs:
         SonarCloud: 'sonar-cloud'
         organization: 'jonatancon1'
         scannerMode: 'Other'
-    
-    #- task: Gradle@3
-      #inputs:
-        #gradleWrapperFile: 'gradlew'
-        #tasks: 'build' 
-        #publishJUnitResults: true
-        #codeCoverageToolOption: 'None'
-        #codeCoverageClassFilesDirectories: 'build/classes/main/'
-        #javaHomeOption: 'JDKVersion'
-        #testResultsFiles: '**/TEST*.xml'
-        #sonarQubeRunAnalysis: true
-        #sqGradlePluginVersionChoice: 'build'
-        #spotBugsAnalysis: false
     - task: Gradle@3
       inputs:
         gradleWrapperFile: 'gradlew'
@@ -72,6 +59,7 @@ stages:
         forceDockerNamingConventions: true
         logRequest: true
         logResponse: true
+    
     
     
     
