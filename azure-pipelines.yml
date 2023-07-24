@@ -5,12 +5,13 @@ resources:
 - repo: self
 
 variables:
-  - tag: '$(Build.BuildId)'
-  - group: NOTIFY_VAR
+  tag: '$(Build.BuildId)'
 
 stages:
 - stage: Build
   displayName: Build image
+  variables:
+  - group: NOTIFY_VAR
   jobs:
   - job: Build
     displayName: Build
