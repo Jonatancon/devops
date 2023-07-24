@@ -59,6 +59,10 @@ stages:
         forceDockerNamingConventions: true
         logRequest: true
         logResponse: true
+    - task: send-message@0
+      inputs:
+        webhookurl: 'https://chat.googleapis.com/v1/spaces/AAAAOmj3nuc/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=uGK1uSDaamVyg9WS7DW_Rb5Om3w2sTkVqaMSJt7LlkI'
+        message: 'Build success take a cookie.'
     
     
     
