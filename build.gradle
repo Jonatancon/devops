@@ -51,13 +51,27 @@ test {
 	}
 
 }
+subprojects {
+
+	sonarqube {
+
+		properties {
+			property "sonar.sources", "src/main"
+			property "sonar.tests", "src/test"
+			property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+			property "sonar.junit.reportsPaths", "$buildDir/test-results/"
+			property "sonar.androidLint.reportPaths", "$buildDir/reports/lint-results-debug.xml"
+		}
+
+	}
+}
 jacocoTestReport {
 	dependsOn test // tests are required to run before generating the report
 
 	reports {
 		xml.required = true
 		csv.required = false
-		enabledReports
+		html.required = true
 	}
 
 	afterEvaluate {
