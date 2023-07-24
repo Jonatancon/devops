@@ -56,9 +56,9 @@ sonar {
 	properties {
 		property "sonar.sources", "src/main"
 		property "sonar.tests", "src/test"
-		property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
-		property "sonar.groovy.jacoco.reportPath", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
-		property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+		property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+		property "sonar.groovy.jacoco.reportPath", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+		property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
 		property "sonar.junit.reportsPaths", "$buildDir/test-results/"
 		property "sonar.androidLint.reportPaths", "$buildDir/reports/lint-results-debug.xml"
 	}
@@ -69,9 +69,9 @@ sonarqube {
 	properties {
 		property "sonar.sources", "src/main"
 		property "sonar.tests", "src/test"
-		property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
-		property "sonar.groovy.jacoco.reportPath", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
-		property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
+		property "sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+		property "sonar.groovy.jacoco.reportPath", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
+		property "sonar.jacoco.reportPaths", "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
 		property "sonar.junit.reportsPaths", "$buildDir/test-results/"
 		property "sonar.androidLint.reportPaths", "$buildDir/reports/lint-results-debug.xml"
 	}
