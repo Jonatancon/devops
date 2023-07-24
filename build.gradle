@@ -57,7 +57,7 @@ test {
 
 }
 
-sonarqube {
+sonar {
 	properties {
 		property "sonar.sources", "src/main"
 		property "sonar.tests", "src/test"
@@ -75,6 +75,8 @@ jacocoTestReport {
 		xml.required = true
 		csv.required = true
 		html.required = true
+
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
 	}
 	afterEvaluate {
 		classDirectories.setFrom(files(classDirectories.files.collect {
