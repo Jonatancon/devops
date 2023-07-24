@@ -5,7 +5,8 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  - tag: '$(Build.BuildId)'
+  - group: NOTIFY_VAR
 
 stages:
 - stage: Build
