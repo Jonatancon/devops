@@ -20,11 +20,14 @@ stages:
     steps:
     - script: git fetch --unshallow
     - task: SonarCloudPrepare@1
+      displayName: 'Prepare Sonar Cloud'
       inputs:
         SonarCloud: 'sonar-cloud'
         organization: 'jonatancon1'
         scannerMode: 'Other'
+
     - task: Gradle@3
+      displayName: 'Build gradle proyect'
       inputs:
         gradleWrapperFile: 'gradlew'
         tasks: 'build'
@@ -37,21 +40,25 @@ stages:
         sqGradlePluginVersionChoice: 'build'
         spotBugsAnalysis: false
     - task: PublishCodeCoverageResults@1
+      displayName: 'publishCodeCoverage'
       inputs:
         codeCoverageTool: 'JaCoCo'
         summaryFileLocation: '$(Build.SourcesDirectory)/build/reports/jacoco/test/jacocoTestReport.xml'
         reportDirectory: '$(Build.SourcesDirectory)/build/reports/jacoco/test/html'
     
     - task: SonarQubePublish@5
+      displayName: 'Update Coverage In SonarCloud'
       inputs:
         pollingTimeoutSec: '300'
     - task: Docker@2
+      displayName: 'Build Docker Image'
       inputs:
         repository: 'java-app'
         command: 'build'
         Dockerfile: '**/dockerfile'
 
     - task: ECRPushImage@1
+      displayName: 'Push Docker Image to ECR'
       inputs:
         awsCredentials: 'container-resgister'
         regionName: 'us-east-1'
@@ -62,18 +69,16 @@ stages:
         logRequest: true
         logResponse: true
 
-    - task: BeanstalkDeployApplication@1
-      inputs:
-        awsCredentials: 'container-resgister'
-        regionName: 'us-east-1'
-        applicationName: 'Devops-Application'
-        environmentName: 'Devops-Application-env'
-        applicationType: 's3'
-        deploymentBundleBucket: 'docker-compose-dev'
-        deploymentBundleKey: 'docker-compose.yml'
-        versionLabel: 'V1.$(Build.BuildId)'
-        logRequest: true
-        logResponse: true
-    
-    
+    #- task: BeanstalkDeployApplication@1
+     # inputs:
+     #   awsCredentials: 'container-resgister'
+     #   regionName: 'us-east-1'
+     #   applicationName: 'Devops-Application'
+     #   environmentName: 'Devops-Application-env'
+     #   applicationType: 's3'
+     #   deploymentBundleBucket: 'docker-compose-dev'
+     #   deploymentBundleKey: 'docker-compose.yml'
+     #   versionLabel: 'V1.$(Build.BuildId)'
+     #   logRequest: true
+     #   logResponse: true
     - template: azure-pipelines/notify.yml
