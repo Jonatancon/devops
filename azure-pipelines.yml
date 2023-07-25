@@ -50,6 +50,7 @@ stages:
         repository: 'java-app'
         command: 'build'
         Dockerfile: '**/dockerfile'
+
     - task: ECRPushImage@1
       inputs:
         awsCredentials: 'container-resgister'
@@ -57,10 +58,10 @@ stages:
         imageSource: 'imageid'
         sourceImageId: 'java-app:$(Build.BuildId)'
         repositoryName: 'application-app'
-        pushTag: '$(Build.BuildId)'
         forceDockerNamingConventions: true
         logRequest: true
         logResponse: true
+        
     #- task: BeanstalkDeployApplication@1
      # inputs:
       #  awsCredentials: 'container-resgister'
