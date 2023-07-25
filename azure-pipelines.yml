@@ -65,12 +65,12 @@ stages:
       inputs:
         awsCredentials: 'container-resgister'
         regionName: 'us-east-1'
-        applicationName: 'devops'
-        environmentName: 'Devops-env'
+        applicationName: 'Devops-Application'
+        environmentName: 'Devops-Application-env'
         applicationType: 's3'
         deploymentBundleBucket: 'docker-compose-dev'
         deploymentBundleKey: 'docker-compose.yml'
-        versionLabel: '1'
+        versionLabel: 'V1.$(Build.BuildId)'
         logRequest: true
         logResponse: true
     
