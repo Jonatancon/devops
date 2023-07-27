@@ -14,6 +14,6 @@ public class HealthController {
 
     @GetMapping
     public HttpEntity<?> ok() {
-        return  ResponseEntity.EMPTY;
+        return  ResponseEntity.accepted().build();
     }
 }
